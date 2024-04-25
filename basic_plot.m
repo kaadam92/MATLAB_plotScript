@@ -2,22 +2,41 @@ clc;
 clear all;
 
 
-X = -1.1*pi:0.1:1.1*pi;
-Y = 1*sin(X);
+%% Demo data generation
+
+%X = -1.1*pi:0.1:1.1*pi;
+%Y = 1*sin(X);
+
+%% Import Excel data
+% Specify the path to the Excel file
+filePath = 'test_import.xlsx';  % Update this with your actual file path
+
+% Read the Excel file into a MATLAB table
+dataTable = readmatrix(filePath);
+
+x1 = dataTable(:,1);
+y1 = dataTable(:,2);
 
 
-plot = plot(X, Y);
+%% Clear plot if existing (breaks MATLAB otherwise)
 
+if exist('plot', 'var') == 1
+    clear plot;
+end
+
+%% Plotting
+
+plot = plot(x1, y1);
 
 
 set(plot,'LineWidth',2);
 
+%% Legend text
  
 hTitle  = title ('Demo Title');
 hYLabel = ylabel('Output Voltage (V)');
 hXLabel = xlabel('Phase difference (rad)');
 
- 
 hLegend = legend([plot],'test');
 
 %set( gca                       , ...
@@ -37,10 +56,13 @@ set([hTitle, hXLabel, hYLabel], ...
 %    'FontWeight' , 'bold'      );
 
 
+%% Chart area formatting
+
 set(gcf, ...
     'Color'     ,[1 1 1]    , ...
     'Position'  ,[500 400 800 400]);
 
+%% Axis Fromatting
 
 set(gca, ...
   'Box'         , 'off'     , ...
