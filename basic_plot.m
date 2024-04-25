@@ -4,18 +4,30 @@ clear all;
 %% Parameters
 % Copy the data indented to be plotted in the test_import.xlsx file,
 % withouth headers, first colums should be the X axis, second is the y
-% axis.
+% axis. Pay attention of the usage of , . and ; in the demo files...
 
-filePath = 'test_import.csv'; %The name of the xls file (must be in the working directory)
+
+
+filePath = 'test_import.xls';   %The name of the xls file (must be in the working directory)
+
+%Use the following line in newer versions than 2019a, works with xlsx, csv
+%and xls, if using older MATLAB, comment out.
+dataTable = readmatrix(filePath);
+
+%In versions older than 2019a use the following line, othervise comment
+%out:
+
+%[dataTable, tmp, tmp2] = xlsread(filePath);
+
 
 graphTitle = 'Demo Title';
 yLabel = 'Output Voltage (V)';
 xLabel = 'Phase difference (rad)';
 legend_1 = 'U_d';
 
-y_overhead = 0.1;           %Determines how much headroom the graph will have in the window
-Tick_count_X = 10;          %Determines how many major (numbered) ticks the grapsh will have on the X axis
-Tick_count_Y = 15;          %Determines how many major (numbered) ticks the grapsh will have on the y axis
+y_overhead = 0.1;               %Determines how much headroom the graph will have in the window
+Tick_count_X = 10;              %Determines how many major (numbered) ticks the grapsh will have on the X axis
+Tick_count_Y = 15;              %Determines how many major (numbered) ticks the grapsh will have on the y axis
 
 export_file_name = 'exportTest.tif';
 
@@ -26,9 +38,7 @@ export_file_name = 'exportTest.tif';
 %X = -1.1*pi:0.1:1.1*pi;
 %Y = 1*sin(X);
 
-%% Import Excel data
-
-dataTable = readmatrix(filePath);
+%% Format Matrice data
 
 X = dataTable(:,1);
 Y = dataTable(:,2);
