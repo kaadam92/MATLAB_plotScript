@@ -6,7 +6,7 @@ clear all;
 % withouth headers, first colums should be the X axis, second is the y
 % axis.
 
-filePath = 'test_import.xlsx'; %The name of the xls file (must be in the working directory)
+filePath = 'test_import.csv'; %The name of the xls file (must be in the working directory)
 
 graphTitle = 'Demo Title';
 yLabel = 'Output Voltage (V)';
@@ -110,6 +110,4 @@ set(gca, ...
 
 
 exportgraphics(gcf,export_file_name,'Resolution',300)
-
-%saveas(gcf,'Test', 'tiff');
 
